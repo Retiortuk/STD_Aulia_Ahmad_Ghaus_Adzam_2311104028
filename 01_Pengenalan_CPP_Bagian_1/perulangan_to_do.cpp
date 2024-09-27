@@ -3,6 +3,17 @@
 using namespace std;
 
 int main() {
-    cout << "Hello World" << endl;
+    
+    int a, b, bilangan;
+    cout << "Masukkan Batas Bawah: " ;
+    cin >> a;
+
+    cout << "Masukkan Batas Atas: " ;
+    cin >> b;
+
+    for (bilangan = a; bilangan <= b; bilangan++) {
+        cout << "Bilangan " << bilangan << endl;
+    }
+
     return 0;
 }
