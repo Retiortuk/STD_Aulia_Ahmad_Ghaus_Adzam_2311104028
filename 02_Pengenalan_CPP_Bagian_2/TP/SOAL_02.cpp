@@ -19,11 +19,11 @@ int main() {
     cout << "Masukkan Bilangan Ke 2: ";
     cin >> num2;
 
-    cout << "Bilangan Sebelum Pertukaran:\n";
+    cout << "\nBilangan Sebelum Pertukaran:\n";
     cout << "Bilangan 1: " << num1 << " Bilangan 2: " << num2 <<endl;
 
     tukar(&num1, &num2);
-    cout << "Bilangan Setelah Ditukar:\n";
+    cout << "\nBilangan Setelah Ditukar:\n";
     cout << "Bilangan 1: " << num1 << " Bilangan 2: " << num2 <<endl;
 
     return 0;
