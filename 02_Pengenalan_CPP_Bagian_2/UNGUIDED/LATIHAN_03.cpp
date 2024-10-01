@@ -1,7 +1,5 @@
 #include <iostream>
-
 using namespace std;
-
 int minimum(int array[], int len) {
     int min = array[0];
     for (int i = 1; i < len; i++) {
