@@ -45,5 +45,60 @@ void outputMahasiswa(Mahasiswa* head) {
     }
 }
 
+int main() {
+    Mahasiswa* head = nullptr;
+    int NIM, pilihan;
+    string nama;
+
+    do {
+        cout << "Menu:\n";
+        cout << "1. Tambah Mahasiswa\n";
+        cout << "2. Cari Mahasiswa Berdasarkan NIM\n";
+        cout << "3. Tampilkan Semua Mahasiswa\n";
+        cout << "4. Keluar\n";
+        cout << "Pilih menu: ";
+        cin >> pilihan;
+
+        switch (pilihan)
+        {
+        case 1:
+            cout << "Masukan NIM: ";
+            cin >> NIM;
+            cin.ignore();
+            cout << "Masukan Nama: ";
+            getline(cin, nama);
+            inputMahasiswa(head, NIM, nama);
+            break;
+
+        case 2:
+            cout << "Masukan NIM Mahasiwa Yang Ingin dicari: ";
+            cin >> NIM;
+            Mahasiswa* hasil;
+            hasil = cariMahasiswa(head, NIM);
+            if (hasil != nullptr) {
+                cout << "Mahasiswa Dengan NIM: " << NIM << hasil->nama << " Ditemukan " << endl;
+            } else {
+                cout << "Mahasiswa Dengan NIM: " << NIM << " Tidak Ditemukan" << endl;
+            }
+            break;
+
+        case 3:
+            cout << "Data Mahasiswa\n";
+            outputMahasiswa(head);
+            break;
+
+        case 4:
+            cout << "Anda Telah Keluar dari Program" << endl;
+            break;
+        
+        default:
+            cout << "Pilihan Tidak Valid" << endl;
+            break;
+        }
+    } while (pilihan != 4);
+
+    return 0;
+}
+
 
 
