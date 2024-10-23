@@ -13,7 +13,7 @@ Node* createNode(int data) {
    return newNode;
 }
 
-void inserNode(Node*& head, int data) {
+void insertNode(Node*& head, int data) {
    Node* newNode = createNode(data);
    if (head == nullptr) {
       head = newNode;
@@ -46,5 +46,18 @@ void searchElement_2311104028(Node* head, int target) {
 }
 
 int main () {
-   
+   Node* head = nullptr;
+   int element;
+
+   cout << "Masukan 6 Elemen untuk List: " << endl;
+   for (int i = 0; i < 6; i++) {
+      cin >> element;
+      insertNode(head, element);
+   }
+
+   cout << "masukan elemen yang dicari: ";
+   cin >> element ;
+   searchElement_2311104028(head, element);
+
+   return 0;
 }
