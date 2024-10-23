@@ -26,3 +26,24 @@ void inputMahasiswa(Mahasiswa*& head, int NIM, string nama) {
     }
 }
 
+Mahasiswa* cariMahasiswa(Mahasiswa* head, int NIM) {
+    Mahasiswa* temp = head;
+    while (temp != nullptr) {
+        if (temp ->NIM == NIM) {
+            return temp;
+        }
+        temp = temp->next;
+    }
+    return nullptr;
+}
+
+void outputMahasiswa(Mahasiswa* head) {
+    Mahasiswa* temp = head;
+    while (temp != nullptr) {
+        cout << "Nama: " << temp->nama << " NIM: " << temp->NIM << endl;
+        temp = temp->next;
+    }
+}
+
+
+
