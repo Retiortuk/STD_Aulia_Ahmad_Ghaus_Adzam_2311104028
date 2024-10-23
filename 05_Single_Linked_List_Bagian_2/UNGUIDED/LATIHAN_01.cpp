@@ -64,19 +64,19 @@ int main() {
         case 1:
             cout << "Masukan NIM: ";
             cin >> NIM;
-            cin.ignore();
+            cin.ignore();  // Tambahkan ignore untuk mengatasi masalah input
             cout << "Masukan Nama: ";
-            getline(cin, nama);
+            getline(cin, nama);  // Gunakan getline untuk membaca input string yang mungkin mengandung spasi
             inputMahasiswa(head, NIM, nama);
             break;
 
         case 2:
-            cout << "Masukan NIM Mahasiwa Yang Ingin dicari: ";
+            cout << "Masukan NIM Mahasiswa Yang Ingin Dicari: ";
             cin >> NIM;
             Mahasiswa* hasil;
             hasil = cariMahasiswa(head, NIM);
             if (hasil != nullptr) {
-                cout << "Mahasiswa Dengan NIM: " << NIM << hasil->nama << " Ditemukan " << endl;
+                cout << "Mahasiswa Dengan NIM: " << NIM << " bernama " << hasil->nama << " Ditemukan " << endl;
             } else {
                 cout << "Mahasiswa Dengan NIM: " << NIM << " Tidak Ditemukan" << endl;
             }
@@ -99,6 +99,3 @@ int main() {
 
     return 0;
 }
-
-
-
