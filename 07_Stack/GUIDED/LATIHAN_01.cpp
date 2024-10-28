@@ -4,16 +4,16 @@ using namespace std;
 string arrayBuku[5];
 int MAX = 5, top = 0;
 
-bool isFull(){
+bool isFull() {
     return (top == MAX);
 }
 
-bool isEmpty(){
+bool isEmpty() {
     return (top == 0);
 }
 
-void pushArrayBook(string data){
-    if (isFull){
+void pushArrayBook(string data) {
+    if (isFull()) {
         cout << "Stack Penuh" << endl;
     } else {
         arrayBuku[top] = data;
@@ -22,23 +22,24 @@ void pushArrayBook(string data){
 }
 
 void popArrayBook() {
-    if (isEmpty){
-        cout << "Stack Kosong Apa jadi Yang harus dikeluarkan" << endl;
+    if (isEmpty()) {
+        cout << "Stack kosong, tidak ada yang bisa dikeluarkan" << endl;
     } else {
-        arrayBuku[top -1] = "";
+        arrayBuku[top - 1] = "";
         top--;
     }
 }
 
 void peekArrayBook(int posisi) {
-    if (isEmpty) {
-        cout << "Stack Kosong jadi apa yang harus dilihat" << endl;
+    if (isEmpty()) {
+        cout << "Stack kosong, tidak ada yang bisa dilihat" << endl;
     } else {
-        int index = top;
-        for (int i = 1; i <= posisi; i++) {
-            index--;
+        int index = top - posisi;
+        if (index >= 0) {
+            cout << "Posisi ke-" << posisi << " adalah " << arrayBuku[index] << endl;
+        } else {
+            cout << "Posisi di luar batas stack" << endl;
         }
-        cout << "Posisi Ke " << posisi << " adalah " << arrayBuku[index] << endl;
     }
 }
 
@@ -47,14 +48,54 @@ int countStack() {
 }
 
 void changeArrayBook(int posisi, string data) {
-    if (posisi > top) {
-        cout << "Posisi Melebihi data yang ada" << endl;
-    } else {
-        int index = top;
-        for (int i = 1; i <= posisi; i++) {
-            index--;
-        }
+    int index = top - posisi;
+    if (index >= 0) {
         arrayBuku[index] = data;
+    } else {
+        cout << "Posisi melebihi data yang ada" << endl;
     }
 }
 
+void destroyArrayBook() {
+    for (int i = top - 1; i >= 0; i--) {
+        arrayBuku[i] = "";
+    }
+    top = 0;
+}
+
+void cetakArrayBuku() {
+    if (isEmpty()) {
+        cout << "Stack kosong, tidak ada yang bisa dicetak" << endl;
+    } else {
+        for (int i = top - 1; i >= 0; i--) {
+            cout << arrayBuku[i] << endl;
+        }
+    }
+}
+
+int main() {
+    pushArrayBook("Kalkulus");
+    pushArrayBook("Struktur Data");
+    pushArrayBook("Matematika Diskrit");
+    pushArrayBook("Dasar Multimedia");
+    pushArrayBook("Bahasa Inggris");
+
+    cetakArrayBuku();
+    cout << "\n";
+
+    cout << "Apakah Data Stack Penuh: " << isFull() << endl;
+    cout << "Apakah Data Stack Kosong: " << isEmpty() << endl;
+
+    peekArrayBook(2);
+    popArrayBook();
+
+    cout << "Banyaknya Data: " << countStack() << endl;
+    changeArrayBook(4, "DPBO");
+    cetakArrayBuku();
+    destroyArrayBook();
+
+    cout << "Jumlah Data Setelah dihapus: " << countStack() << endl;
+    cetakArrayBuku();
+
+    return 0;
+}
