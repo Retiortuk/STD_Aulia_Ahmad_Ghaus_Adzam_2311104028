@@ -13,7 +13,7 @@ int main() {
         push(S, c);
     }
 
-    cout << "Isi stack awal: ";
+    cout << "\nIsi stack awal: ";
     printInfo(S);
 
     cout << "Isi stack setelah pop: ";
