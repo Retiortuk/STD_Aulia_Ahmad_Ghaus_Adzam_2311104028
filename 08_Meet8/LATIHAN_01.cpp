@@ -1,100 +1,119 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-struct Node {
-    string data;
-    Node* next;
+// Data Mahasiswa 
+struct Mahasiswa {
+    string nama;
+    int nim;
+    Mahasiswa* next;
 };
 
-class Queue {
-private:
-    Node* front;
-    Node* back;
+Mahasiswa* front = nullptr;
+Mahasiswa* rear = nullptr;
 
-public:
-    Queue() : front(nullptr), back(nullptr) {}
+bool isEmpty() {
+    return front == nullptr;
+}
 
-    bool isEmpty() {
-        return front == nullptr;
+// BUAT PUSH KE QUEUE
+void enqueueMahasiswa(string nama, int nim) {
+    Mahasiswa* newMahasiswa = new Mahasiswa();
+    newMahasiswa->nama = nama;
+    newMahasiswa->nim = nim;
+    newMahasiswa->next = nullptr;
+
+    if (isEmpty()) {
+        front = rear = newMahasiswa;
+    } else {
+        rear->next = newMahasiswa;
+        rear = newMahasiswa;
     }
+    cout << "Mahasiswa " << nama << " dengan NIM " << nim << " telah ditambahkan ke dalam queue." << endl;
+}
 
-    void enqueueAntrian(string data) {
-        Node* newNode = new Node();
-        newNode->data = data;
-        newNode->next = nullptr;
-
-        if (isEmpty()) {
-            front = back = newNode;
-        } else {
-            back->next = newNode;
-            back = newNode;
-        }
-    }
-
-    void dequeueAntrian() {
-        if (isEmpty()) {
-            cout << "Antrian kosong" << endl;
-            return;
-        }
-
-        Node* temp = front;
+// HAPUS DARI QUEUE
+void dequeueMahasiswa() {
+    if (isEmpty()) {
+        cout << "Antrian kosong, tidak ada yang bisa dihapus." << endl;
+    } else {
+        Mahasiswa* temp = front;
+        cout << "Mahasiswa " << front->nama << " dengan NIM " << front->nim << " telah dikeluarkan dari queue." << endl;
         front = front->next;
+        delete temp;
 
         if (front == nullptr) {
-            back = nullptr;
+            rear = nullptr;
         }
-
-        delete temp;
     }
+}
 
-    int countQueue() {
-        int count = 0;
-        Node* temp = front;
+// NGDISPLAY
+void viewQueue() {
+    if (isEmpty()) {
+        cout << "Antrian kosong." << endl;
+    } else {
+        Mahasiswa* temp = front;
+        cout << "Data antrian mahasiswa:" << endl;
+        int count = 1;
         while (temp != nullptr) {
-            count++;
+            cout << count++ << ". Nama: " << temp->nama << ", NIM: " << temp->nim << endl;
             temp = temp->next;
         }
-        return count;
     }
-
-    void clearQueue() {
-        while (!isEmpty()) {
-            dequeueAntrian();
-        }
-    }
-
-    void viewQueue() {
-        cout << "Data antrian teller: " << endl;
-        if (isEmpty()) {
-            cout << "(kosong)" << endl;
-            return;
-        }
-
-        Node* temp = front;
-        int index = 1;
-        while (temp != nullptr) {
-            cout << index << ". " << temp->data << endl;
-            temp = temp->next;
-            index++;
-        }
-    }
-
-    ~Queue() {
-        clearQueue();
-    }
-};
+}
 
 int main() {
-    Queue queue;
-    queue.enqueueAntrian("Andi");
-    queue.enqueueAntrian("Maya");
-    queue.viewQueue();
-    cout << "Jumlah antrian: " << queue.countQueue() << endl;
-    queue.dequeueAntrian();
-    queue.viewQueue();
-    cout << "Jumlah antrian: " << queue.countQueue() << endl;
-    queue.clearQueue();
-    queue.viewQueue();
-    cout << "Jumlah antrian: " << queue.countQueue() << endl;
+    int pilihan;
+    string nama;
+    int nim;
+
+    do {
+        cout << "\nMenu Queue Mahasiswa:" << endl;
+        cout << "1. Tambah Mahasiswa ke Queue" << endl;
+        cout << "2. Hapus Mahasiswa dari Queue" << endl;
+        cout << "3. Lihat Isi Queue" << endl;
+        cout << "4. Keluar" << endl;
+        cout << "Pilih opsi: ";
+        cin >> pilihan;
+
+        if(cin.fail()) {
+            cin.clear(); 
+            cin.ignore(1000, '\n'); 
+            cout << "Input tidak valid. Silakan masukkan angka antara 1-4." << endl;
+            continue;
+        }
+
+        cin.ignore(); 
+
+        switch (pilihan) {
+            case 1:
+                cout << "Masukkan Nama Mahasiswa: ";
+                getline(cin, nama);
+                cout << "Masukkan NIM Mahasiswa: ";
+                cin >> nim;
+
+                if(cin.fail()) {
+                    cin.clear(); 
+                    cin.ignore(1000, '\n'); // Biar Gak Ngebug LOOPING TERUS
+                    cout << "NIM tidak valid. Silakan masukkan angka." << endl;
+                    continue;
+                }
+
+                enqueueMahasiswa(nama, nim);
+                break;
+            case 2:
+                dequeueMahasiswa();
+                break;
+            case 3:
+                viewQueue();
+                break;
+            case 4:
+                cout << "Keluar dari program." << endl;
+                break;
+            default:
+                cout << "Pilihan tidak valid. Silakan coba lagi." << endl;
+        }
+    } while (pilihan != 4);
     return 0;
 }
