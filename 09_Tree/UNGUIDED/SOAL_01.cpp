@@ -65,7 +65,7 @@ Pohon* insertRight(int data, Pohon *node) {
     return newNode;
 }
 
-// Menampilkan Descendant
+// Menampilkan Descendant Dan Child nya
 void displayDescendants(Pohon *node) {
     if (node == NULL) return;
     cout << node->data << " ";
@@ -73,21 +73,20 @@ void displayDescendants(Pohon *node) {
     displayDescendants(node->right);
 }
 
-// Recursive function to check if the tree is a valid BST
+
 bool isValidBST(Pohon *node, int min_val, int max_val) {
     if (node == NULL) return true;
     if (node->data <= min_val || node->data >= max_val) return false;
     return isValidBST(node->left, min_val, node->data) && isValidBST(node->right, node->data, max_val);
 }
 
-// Recursive function to count leaf nodes
+
 int countLeafNodes(Pohon *node) {
     if (node == NULL) return 0;
     if (node->left == NULL && node->right == NULL) return 1;
     return countLeafNodes(node->left) + countLeafNodes(node->right);
 }
 
-// Main function with menu
 int main() {
     init();
     int choice, data, nodeData;
@@ -95,40 +94,40 @@ int main() {
 
     while (true) {
         cout << "\nMenu:\n";
-        cout << "1. Create Root Node\n";
-        cout << "2. Insert Left Child\n";
-        cout << "3. Insert Right Child\n";
+        cout << "1. Buat Root Baru\n";
+        cout << "2. Masukan Left Child\n";
+        cout << "3. Masukan Right Child\n";
         cout << "4. Display Descendants of a Node\n";
-        cout << "5. Check if Tree is a Valid BST\n";
-        cout << "6. Count Leaf Nodes\n";
+        cout << "5. Cek Valid BST\n";
+        cout << "6. Hitung Leaf Nodes nya\n";
         cout << "7. Exit\n";
-        cout << "Enter your choice: ";
+        cout << "Masukan Pilihan 1-7: ";
         cin >> choice;
 
         switch (choice) {
             case 1:
-                cout << "Enter data for root node: ";
+                cout << "Masukan Root Untuk data: ";
                 cin >> data;
                 createNode(data);
                 break;
             case 2:
-                cout << "Enter data of parent node for left child: ";
+                cout << "Masukan Data Parent dari left Node: ";
                 cin >> nodeData;
-                cout << "Enter data for left child: ";
+                cout << "Masukan Left Child Nya: ";
                 cin >> data;
                 selectedNode = new Pohon(nodeData);
                 insertLeft(data, selectedNode);
                 break;
             case 3:
-                cout << "Enter data of parent node for right child: ";
+                cout << "Masukan Data Parent dari Right Node: ";
                 cin >> nodeData;
-                cout << "Enter data for right child: ";
+                cout << "Masukan Right Child Nya: ";
                 cin >> data;
                 selectedNode = new Pohon(nodeData);
                 insertRight(data, selectedNode);
                 break;
             case 4:
-                cout << "Enter node data to display descendants: ";
+                cout << "Masukan Data Node Yang Ingin Dilihat Descedant Nya: ";
                 cin >> nodeData;
                 selectedNode = new Pohon(nodeData);
                 cout << "Descendants of node " << nodeData << ": ";
@@ -146,7 +145,7 @@ int main() {
                 cout << "Total leaf nodes: " << countLeafNodes(root) << endl;
                 break;
             case 7:
-                cout << "Exiting program." << endl;
+                cout << "Exit." << endl;
                 return 0;
             default:
                 cout << "Invalid choice! Please try again." << endl;
