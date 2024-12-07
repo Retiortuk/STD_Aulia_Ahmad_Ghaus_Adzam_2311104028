@@ -15,11 +15,11 @@ struct Pegawai {
     Pegawai* next;
 };
 
-// Void buat Membuat List Proyek Kosong
+// Void buat Membuat List Proyek Masih Kosongan
 void createPegawaiList(Pegawai*& head) {
     head = nullptr;
 }
-// Void buat Proyek Kosong
+// Void buat Proyek Masih Kosongan
 void createProyekList(Proyek*& head) {
     head = nullptr;
 }
@@ -34,7 +34,7 @@ void addPegawaiBaru(Pegawai*& head, const string& nama, const string& id) {
 
     // Jika Head/List Kosong
     if (head == nullptr) {
-        head = newPegawai; // Head -> Pegawai Baru Jika List Kosong -> elemen Pertama
+        head = newPegawai; // Head di isi Pegawai Baru Jika List Kosong bakalan pindah ke elemen Pertama
     } else { // Kalo Enggak
         Pegawai* temp = head;
         while ( temp->next != nullptr) {
@@ -82,7 +82,7 @@ void removeProyek(Pegawai* head, const string& nama_proyek) {
 void display(Pegawai* head) {
     // Mengecek Kondisi Apakah Kosong untuk List Pegawai?
     while (head != nullptr) {
-        // Kalo Ada maka akan display
+        // Kalo Ada maka bakalan display
         cout << "Nama Pegawai: " << head->nama << " ID Pegawai: " << head->id << endl;
 
         // Panggil Pointer/List Proyek nya
@@ -109,12 +109,12 @@ int main() {
     addPegawaiBaru(listPegawai, "Citra", "P003");
 
     // add Proyek
-    addProyek(listPegawai, "Aplikasi Mobile ", 12);
+    addProyek(listPegawai, "Aplikasi Mobile", 12);
     addProyek(listPegawai->next, "Sistem Akutansi", 8);
     addProyek(listPegawai->next->next, "E-Commerce", 10);
     // add buat si andi
     addProyek(listPegawai, "Analisis Data", 6);
-    // Remove Aplikasi Mobile
+    // Remove Aplikasi Mobile dari si andi
     removeProyek(listPegawai, "Aplikasi Mobile");
 
     cout << "Data Pegawai Dan Proyek nya:\n";
