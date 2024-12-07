@@ -44,6 +44,46 @@ void addProyek(Pegawai* head, const string& nama_proyek, int durasi){
         break;
     }
 }
+// Hapus Proyek Berdasarkan nama Proyek
+void removeProyek(Pegawai* head, const string& nama_proyek) {
+    while (head != nullptr) {
+        Proyek* prev = nullptr;
+        Proyek* curr = head->proyek;
 
+        while (curr != nullptr) {
+            if (curr->nama_proyek == nama_proyek) {
+                if (prev == nullptr) {
+                    head->proyek = curr->next;
+                } else {
+                    prev->next = curr->next;
+                }
+                delete curr;
+                break;
+            }
+            prev = curr;
+            curr = curr->next;
+        }
+        break;  
+    }
+}
 
+// Display
+void display(Pegawai* head) {
+    // Mengecek Kondisi Apakah Kosong untuk List Pegawai?
+    while (head != nullptr) {
+        // Kalo Ada maka akan display
+        cout << "Nama Pegawai: " << head->nama << " ID Pegawai: " << head->id << endl;
+
+        // Panggil Pointer/List Proyek nya
+        Proyek* proyek = head->proyek;
+        // Cek Apakah Kosong Untuk list Proyek nya
+        while ( proyek != nullptr) {
+            // Kalo ada bakal display
+            cout << "Nama Proyek: " << proyek->nama_proyek << " Durasi Proyek: " << proyek->durasi << " Bulan." << endl;
+            proyek = proyek->next;
+        }
+        cout << endl;
+        head = head->next;
+    }
+}
 
