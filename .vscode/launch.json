@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/documents/ngoding/STD_Aulia_Ahmad_Ghaus_Adzam_2311104028/01_Pengenalan_CPP_Bagian_1/TP",
-      "program": "d:/documents/ngoding/STD_Aulia_Ahmad_Ghaus_Adzam_2311104028/01_Pengenalan_CPP_Bagian_1/TP/build/Debug/outDebug",
+      "cwd": "d:/Documents/ngoding/STD_Aulia_Ahmad_Ghaus_Adzam_2311104028/12_Multiple_Linked_List",
+      "program": "d:/Documents/ngoding/STD_Aulia_Ahmad_Ghaus_Adzam_2311104028/12_Multiple_Linked_List/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
