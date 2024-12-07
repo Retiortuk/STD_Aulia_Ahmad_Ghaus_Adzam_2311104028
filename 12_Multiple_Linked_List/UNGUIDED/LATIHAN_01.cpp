@@ -30,8 +30,18 @@ void addPegawaiBaru(Pegawai*& head, const string& nama, const string& id) {
     newPegawai->nama = nama;
     newPegawai->id = id;
     newPegawai->proyek = nullptr;
-    newPegawai->next = head;
-    head = newPegawai; 
+    newPegawai->next = nullptr;
+
+    // Jika Head/List Kosong
+    if (head == nullptr) {
+        head = newPegawai; // Head -> Pegawai Baru Jika List Kosong -> elemen Pertama
+    } else { // Kalo Enggak
+        Pegawai* temp = head;
+        while ( temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newPegawai;
+    }
 }
 // buat add proyek ke dalam pegawai
 void addProyek(Pegawai* head, const string& nama_proyek, int durasi){
@@ -63,7 +73,8 @@ void removeProyek(Pegawai* head, const string& nama_proyek) {
             prev = curr;
             curr = curr->next;
         }
-        break;  
+        head = head->next;  
+        break;
     }
 }
 
@@ -87,3 +98,27 @@ void display(Pegawai* head) {
     }
 }
 
+int main() {
+    // Deklarasi/Panggil di Main
+    Pegawai* listPegawai;
+    createPegawaiList(listPegawai);
+
+    // Buat Pegawai
+    addPegawaiBaru(listPegawai, "Andi", "P001");
+    addPegawaiBaru(listPegawai, "Budi", "P002");
+    addPegawaiBaru(listPegawai, "Citra", "P003");
+
+    // add Proyek
+    addProyek(listPegawai, "Aplikasi Mobile ", 12);
+    addProyek(listPegawai->next, "Sistem Akutansi", 8);
+    addProyek(listPegawai->next->next, "E-Commerce", 10);
+    // add buat si andi
+    addProyek(listPegawai, "Analisis Data", 6);
+    // Remove Aplikasi Mobile
+    removeProyek(listPegawai, "Aplikasi Mobile");
+
+    cout << "Data Pegawai Dan Proyek nya:\n";
+    display(listPegawai);
+
+    return 0;
+}
