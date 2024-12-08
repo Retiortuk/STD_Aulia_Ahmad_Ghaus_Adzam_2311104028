@@ -87,4 +87,22 @@ void removeAnggota(Anggota*& head, const string& id) {
     }
 }
 
+// Display Info
+void display(Anggota* head) {
+    // Cek kondisi List Anggota nya Kosong atau Enggak
+    while ( head != nullptr) {
+        // jika kagak kosong (ada)
+        cout << "Nama Anggota: " << head->nama << " ID: " << head->id << endl;
 
+        // Sekarang Untuk Buku nya
+        // panggil/Deklarasi dulu Pointer Buku nya
+        Buku* buku = head->bukuPinjam;
+        while ( buku != nullptr) {
+            cout << "Nama Buku: " << buku->judul << " Tanggal Pengembalian: " << buku->tanggal_pengembalian << endl;
+            buku = buku->next;
+        }
+        cout << endl;
+        head = head->next;
+    }
+}
+ 
