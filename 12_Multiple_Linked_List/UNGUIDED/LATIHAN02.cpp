@@ -105,33 +105,31 @@ void display(Anggota* head) {
         head = head->next;
     }
 }
- 
+
 
 int main() {
-    // Deklarasi dan pembuatan daftar anggota
+    // Deklarasi Dulu Disini
     Anggota* listAnggota;
     createAnggota(listAnggota);
 
-    // Menambahkan anggota
+    // Tambah Anggota
     addAnggota(listAnggota, "Rani", "A001");
     addAnggota(listAnggota, "Dito", "A002");
     addAnggota(listAnggota, "Vina", "A003");
 
-    // Menambahkan buku yang dipinjam
-    addBuku(listAnggota, "Pemrograman C++", "01/12/2024");  // Untuk Rani
-    addBuku(listAnggota->next, "Algoritma Pemrograman", "15/12/2024");  // Untuk Dito
-    addBuku(listAnggota->next->next, "Struktur Data", "10/12/2024");  // Untuk Vina
+    // Tambah Buku yang dipinjam
+    addBuku(listAnggota, "Pemrograman C++", "01/12/2024");  
+    addBuku(listAnggota->next, "Algoritma Pemrograman", "15/12/2024"); 
+    addBuku(listAnggota->next->next, "Struktur Data", "10/12/2024");  
 
-    // Menambahkan buku baru
+    // Tamabh Buku baru buat si rani
     addBuku(listAnggota, "Struktur Data", "10/12/2024");  // Untuk Rani
 
-    // Menghapus anggota Dito
+    // ngapus si dito
     removeAnggota(listAnggota, "A002");
 
-    // Menampilkan seluruh data anggota dan buku yang dipinjam
     cout << "Data Anggota dan Buku yang Dipinjam:" << endl;
     display(listAnggota);
-
 
     return 0;
 }
