@@ -47,7 +47,7 @@ void addAnggota(Anggota*& head, const string& nama, const string& id) {
 }
 
 // Fumgsi Buat AddBuku ke dalan anggota
-void addBuku(Anggota* head, const string& judul, string& tanggal_pengembalian) {
+void addBuku(Anggota* head, const string& judul, const string& tanggal_pengembalian) {
     while ( head != nullptr) {
         Buku* newBuku = new Buku;
         newBuku->judul = judul;
@@ -106,3 +106,32 @@ void display(Anggota* head) {
     }
 }
  
+
+int main() {
+    // Deklarasi dan pembuatan daftar anggota
+    Anggota* listAnggota;
+    createAnggota(listAnggota);
+
+    // Menambahkan anggota
+    addAnggota(listAnggota, "Rani", "A001");
+    addAnggota(listAnggota, "Dito", "A002");
+    addAnggota(listAnggota, "Vina", "A003");
+
+    // Menambahkan buku yang dipinjam
+    addBuku(listAnggota, "Pemrograman C++", "01/12/2024");  // Untuk Rani
+    addBuku(listAnggota->next, "Algoritma Pemrograman", "15/12/2024");  // Untuk Dito
+    addBuku(listAnggota->next->next, "Struktur Data", "10/12/2024");  // Untuk Vina
+
+    // Menambahkan buku baru
+    addBuku(listAnggota, "Struktur Data", "10/12/2024");  // Untuk Rani
+
+    // Menghapus anggota Dito
+    removeAnggota(listAnggota, "A002");
+
+    // Menampilkan seluruh data anggota dan buku yang dipinjam
+    cout << "Data Anggota dan Buku yang Dipinjam:" << endl;
+    display(listAnggota);
+
+
+    return 0;
+}
