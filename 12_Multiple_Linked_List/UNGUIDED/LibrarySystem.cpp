@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// STRUCT BUKU NYA DISINI UY!
+struct Buku {
+    string judul;
+    string tanggal_pengembalian;
+    Buku* next;
+};
+// STRUCT ANGGOTA NYA DISINI UY!
+struct Anggota {
+    string nama;
+    string id;
+    Buku* bukuPinjam;
+    Anggota* next;
+};
+
+// BUAT DAFTAR ANGGOTA
+void createAnggota(Anggota*& head) {
+    head = nullptr;
+}
+
+// ADD ANGGOTA BARU
+void addAnggota(Anggota*& head, const string& nama, const string& id) {
+    // Deklarasi Dulu varr newAnggota -> Anggota*
+    Anggota* newAnggota = new Anggota;
+    newAnggota->nama = nama;
+    newAnggota->id = id;
+    newAnggota->bukuPinjam = nullptr; // Null -> karena kan ini buat add anggota jadi pinjam buku kita null in aja dulu
+    newAnggota->next = nullptr;
+
+    // Perbandingan agar list data yang masuk pertama itu tetap pertama
+    if (head == nullptr) {
+        // Kalo masih kosong head di isi new Anggota
+        head = newAnggota;
+    } else {
+        // kalo enggak buat varr temporary
+        Anggota* temp = head;
+        // LOoping sampai temp bakal jalan ke next sampai data nya itu gak null/gak kosong
+        while (temp->next != nullptr) {
+            // Maka temp di isi sama lokasi/value hasil dari looping
+            temp = temp->next;
+        }
+        temp->next = newAnggota; // maka akhirnya di isi dengan newAnggota
+    }
+}
+
+// Fumgsi Buat AddBuku ke dalan anggota
+void addBuku(Anggota* head, const string& judul, string& tanggal_pengembalian) {
+    while ( head != nullptr) {
+        Buku* newBuku = new Buku;
+        newBuku->judul = judul;
+        newBuku->tanggal_pengembalian = tanggal_pengembalian;
+        newBuku->next = head->bukuPinjam;
+        head->bukuPinjam = newBuku;
+        break;
+    }
+}
