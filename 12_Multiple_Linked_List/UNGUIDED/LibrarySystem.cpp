@@ -57,3 +57,34 @@ void addBuku(Anggota* head, const string& judul, string& tanggal_pengembalian) {
         break;
     }
 }
+
+// Fungsi untuk menghapus anggota dan buku yang dipinjam
+void removeAnggota(Anggota*& head, const string& id) {
+    Anggota* prev = nullptr;
+    Anggota* curr = head;
+
+    while (curr != nullptr) {
+        if (curr->id == id) {
+            if (prev == nullptr) {  
+                head = curr->next;
+            } else {
+                prev->next = curr->next;
+            }
+
+            Buku* bukuTemp = curr->bukuPinjam;
+            while (bukuTemp != nullptr) {
+                Buku* tempBuku = bukuTemp;
+                bukuTemp = bukuTemp->next;
+                delete tempBuku;
+            }
+
+            delete curr;
+            cout << "Anggota dengan ID " << id << " telah dihapus beserta buku yang dipinjam." << endl;
+            break;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+}
+
+
